@@ -1,0 +1,21 @@
+---
+
+- hosts: webservers
+  tasks:
+          - name: "create a test folder"
+            file:
+                    path: "{{home}}"
+                    state: directory
+
+          - name: "create a file in home dir"
+            file:
+                    path: "{{home}}/awesome.txt"
+                    state: touch
+
+          - name: "create a folder in home"
+            file:
+                    path: "{{pictures_folder}}"
+                    state: directory
+          - name: "append password to file"
+            shell: "echo {{password}} >> {{home}}/awesome.txt"
+...

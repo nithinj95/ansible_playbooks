@@ -1,0 +1,21 @@
+---
+- hosts: dev_machines
+  become: true
+  tasks:
+    - name: "install git"
+      yum:
+         name: git
+         state: present
+    - name: "instal vim"
+      yum:
+         name: vim
+         state: present
+    - name: "setup developement folder"
+      file:
+         path: /developement
+         state: directory
+    - name: "add developers group"
+      group:
+         name: developers
+         state: present
+

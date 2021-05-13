@@ -1,0 +1,31 @@
+---
+
+- hosts: webservers
+  vars_prompt:
+          - name: "home"
+            prompt: "enter the home dir"
+            private: no
+          - name: "pictures_folder"
+            prompt: "enter the pictures folder"
+            private: no
+          - name: "password"
+            prompt: "enter password"
+            private: yes
+  tasks:
+          - name: "create a test folder"
+            file:
+                    path: "{{home}}"
+                    state: directory
+
+          - name: "create a file in home dir"
+            file:
+                    path: "{{home}}/awesome.txt"
+                    state: touch
+
+          - name: "create a folder in home"
+            file:
+                    path: "{{pictures_folder}}"
+                    state: directory
+          - name: "append password to file"
+            shell: "echo {{password}} >> {{home}}/awesome.txt"
+...

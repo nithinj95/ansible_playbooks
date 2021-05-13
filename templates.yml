@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+          - name: copy the resolv.conf file
+            template:
+                    src: ./resolv.conf
+                    dest: /tmp/resolv.conf
+          - name: lock the resolv.conf file
+            shell:
+                 chdir: /tmp/
+                 cmd: chattr +i resolv.conf
+                 

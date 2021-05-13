@@ -1,0 +1,21 @@
+---
+
+- hosts: webservers
+  vars_files:
+          - ./variables.yml
+  tasks:
+          - name: "create a test folder"
+            file:
+                    path: "{{home}}"
+                    state: directory
+
+          - name: "create a file in home dir"
+            file:
+                    path: "{{home}}/awesome.txt"
+                    state: touch
+
+          - name: "create a folder in home"
+            file:
+                    path: "{{pictures_folder}}"
+                    state: directory
+...

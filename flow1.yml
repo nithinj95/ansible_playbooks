@@ -1,0 +1,12 @@
+---
+- hosts: dev_machines
+  become: yes
+  vars_files:
+          - "./templates/{{ansible_facts['distribution']}}.variables.yml"       
+
+  tasks:
+          - name: "restart service"
+            service:
+                    name: "{{webserver}}"
+                    state: restarted
+

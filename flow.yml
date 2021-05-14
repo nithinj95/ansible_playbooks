@@ -1,0 +1,17 @@
+---
+- hosts: dev_machines
+  become: true
+  tasks:
+          - name: " install apache2"
+            apt:
+                    name: apache2
+                    state: present
+            when: ansible_facts['distribution'] == 'Ubuntu'
+
+          - name: "install httpd"
+            yum:
+                    name: httpd
+                    state: present
+            when: ansible_facts['distribution'] == 'CentOS'
+
+
